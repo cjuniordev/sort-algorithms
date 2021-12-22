@@ -9,21 +9,13 @@ int main()
   int comprimento = sizeof(lista)/sizeof(lista[0]);
   int num = 0;
 
-  printf("Lista Original:\n");
+  printf("Lista Desordenada:\n");
 
-  for (int i = 0; i < comprimento; i++)
-  {
-    printf("%d%s", lista[i], i == comprimento - 1 ? "\n" : " ");  
-  }
+  imprimeLista(lista, comprimento);
 
-  printf("\nLista Organizada:\n");
+  printf("\nLista Ordenada:\n");
 
-  bogoSort(lista, 7, &num);
+  bogoSort(lista, comprimento);
 
-  for (int i=0; i < 7; i++)
-  {
-    printf("%d ", lista[i]);
-  }
-
-  printf("\n Numero de vezes que o Metodo de Ordenacao foi usado: %d", num);
+  imprimeLista(lista, comprimento);
 }

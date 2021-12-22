@@ -3,13 +3,12 @@
 #include <stdbool.h>
 #include "func.h"
  
-int estaOrdenado(int *lista, int n, int **i)
+int estaOrdenado(int *lista, int n)
 {
   while ( --n >= 1 ) 
   {
     if ( lista[n] < lista[n-1] )
     {
-      **i++;
       return 0;
     }
   }
@@ -28,10 +27,18 @@ void ordenar(int *lista, int n)
   }
 }
  
-void bogoSort(int *lista, int n, int *i)
+void bogoSort(int *lista, int n)
 {
-  while ( !estaOrdenado(lista, n, &i) )
+  while ( !estaOrdenado(lista, n) )
   {
     ordenar(lista, n);
+  }
+}
+
+void imprimeLista(int *lista, int n)
+{
+  for (int i = 0; i < n; i++)
+  {
+    printf("%d ", lista[i]);  
   }
 }
