@@ -1,20 +1,30 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "func.h"
 
 int main()
 {
-    int list[] = {2, 4, 6, 7, 9, 1, 4, 6, 9, 0}; // Declarando lista desordenada
-    int len = sizeof(list)/sizeof(list[0]); // Variavel contendo o comprimento da lista
+    int len, ate;
+
+    printf("Tamanho da lista: ");
+    scanf("%d", &len);
+  
+    int lista[len];
+
+    printf("Gerar numeros aleatorios de 0 ate: ");
+    scanf("%d", &ate);
+
+    gerarListaAleatoria(lista, len, ate+1);
 
     printf("Lista desordenada:\n");
 
-    imprimeLista(list, len);
+    imprimeLista(lista, len);
     
-    quickSort(list, 0, len); // Chamada da função que aplica o metodo bogosort
+    quickSort(lista, 0, len); // Chamada da função que aplica o metodo bogosort
 
     printf("\nLista ordenada:\n");
 
-    imprimeLista(list, len);
+    imprimeLista(lista, len);
 
     return 0;
 }

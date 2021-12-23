@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "func.h"
 
 void quickSort(int *list, int init, int end){
@@ -41,5 +42,12 @@ void imprimeLista(int *lista, int n) // Funcao que imprime a lista, para evitar 
         } else{
             printf("%d, ", lista[i]);
         }  
+  }
+}
+
+void gerarListaAleatoria(int *lista, int len, int n){
+  for(int i=0;i<len;i++)
+  {
+    lista[i]=(rand()%n);
   }
 }
