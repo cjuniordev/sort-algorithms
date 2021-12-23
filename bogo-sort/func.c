@@ -37,8 +37,13 @@ void bogoSort(int *lista, int n) // Funcao que aplica o metodo bogosort
 
 void imprimeLista(int *lista, int n) // Funcao que imprime a lista, para evitar repetição de codigo
 {
+  printf("[ ");
   for (int i = 0; i < n; i++) // Estrutura de repetição que passa por toda a lista e imprime seus valores
   {
-    printf("%d ", lista[i]);  
+    if(i==(n-1)){
+            printf("%d ]\n", lista[i]);
+        } else{
+            printf("%d, ", lista[i]);
+        }  
   }
 }
