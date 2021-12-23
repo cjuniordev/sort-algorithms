@@ -5,18 +5,27 @@
 
 int main()
 {
-  int lista[] = { 4, 1, 3, 7, 8, 10, -5 }; //Variavel contendo a lista
-  int comprimento = sizeof(lista)/sizeof(lista[0]); //Variavel contendo o comprimento da lista
+  int len, ate;
+
+  printf("Tamanho da lista: ");
+  scanf("%d", &len);
+  
+  int lista[len];
+
+  printf("Gerar numeros aleatorios de 0 ate: ");
+  scanf("%d", &ate);
+
+  gerarListaAleatoria(lista, len, ate+1);
 
   printf("Lista Desordenada:\n");
 
-  imprimeLista(lista, comprimento);
+  imprimeLista(lista, len);
+
+  bogoSort(lista, len); // Chamada da função que aplica o metodo bogosort
 
   printf("\nLista Ordenada:\n");
 
-  bogoSort(lista, comprimento); //Chamada da função que aplica o metodo bogosort
-
-  imprimeLista(lista, comprimento);
+  imprimeLista(lista, len);
 
   printf("\n");
 }
