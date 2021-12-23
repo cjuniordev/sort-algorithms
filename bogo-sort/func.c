@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include "func.h"
  
 int estaOrdenado(int *lista, int n) // Funcao que verifica se a lista esta ordenada
