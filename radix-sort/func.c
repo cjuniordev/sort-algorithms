@@ -2,33 +2,63 @@
 #include <stdlib.h>
 #include "func.h"
 
-void radixSort(int list[], int len) {
-    int i;
-    int *b;
-    int maior = list[0];
-    int exp = 1;
+int pegaDigito(int numero, int divisor){
+    return (numero / divisor) % 10;
+}
 
-    b = (int *)calloc(len, sizeof(int));
+int maximo(int lista[], int n){ // lista e tamanho
+    int max = lista[0];
+    for (int i = 1; i < n; i++){
+        if (lista[i] > max)
+            max = lista[i];
+    }
+    return max;
+}
 
-    for (i = 0; i < len; i++) {
-        if (list[i] > maior)
-    	    maior = list[i];
+void zeraLista(int *lista, int n){
+    for(int i=0; i<n; i++){
+        lista[i] = 0;
+    }
+}
+
+void countingSort(int *lista, int n, int divisor, int *aux){
+    int base = 10;
+    int digito, c[base], s = 0; // t --> soma de prefixo || c[base] --> lista de contagem
+    zeraLista(c, n);
+    zeraLista(aux, n);
+
+    for(int i=0; i < n; i++){
+        digito = pegaDigito(lista[i], divisor);
+        c[digito]++;
     }
 
-    while (maior/exp > 0) {
-        int bucket[10] = { 0 };
-    	for (i = 0; i < len; i++)
-    	    bucket[(list[i] / exp) % 10]++;
-    	for (i = 1; i < 10; i++)
-    	    bucket[i] += bucket[i - 1];
-    	for (i = len - 1; i >= 0; i--)
-    	    b[--bucket[(list[i] / exp) % 10]] = list[i];
-    	for (i = 0; i < len; i++)
-    	    list[i] = b[i];
-    	exp *= 10;
+    for(int i=0; i < base; i++){ // soma de prefixo, soma todos os elementos antes de i
+        int t = c[i];
+        c[i] = s;
+        s += t;
     }
 
-    free(b);
+    for(int i=0; i < n; i++){ // copiar lista no vetor temporario obedecendo a ordem dos prefixos
+        digito = pegaDigito(lista[i], divisor);
+        aux[c[digito]] = lista[i];
+        c[digito]++;
+    }
+
+    for(int i=0; i < n; i++) { // lista original recebe a lista auxiliar ordenada
+        lista[i] = aux[i];
+    }
+}
+
+void radixSort(int *lista, int n){
+    int divisor = 1;
+    int q = maximo(lista, n); // pega o maior numero do vetor
+    int *aux = (int *)calloc(n, sizeof(int));
+    while(q > 0){
+        countingSort(lista, n, divisor, aux);
+        divisor *= 10; // dividor multiplo de 10 para ir pegando sempre a proxima casa decimal
+        q /= 10; // diminui a quantidade de casas do maior numero
+    }
+    free(aux); // libera memoria
 }
 
 void imprimeLista(int *lista, int n) // Funcao que imprime a lista, para evitar repetição de codigo
