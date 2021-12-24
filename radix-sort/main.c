@@ -13,7 +13,7 @@ int main()
 
   printf("\nLista Ordenada:\n");
 
-  radix_sort(list, len); //Chamada da função que aplica o metodo radixSort
+  radixSort(list, len); //Chamada da função que aplica o metodo radixSort
 
   imprimeLista(list, len);
 
