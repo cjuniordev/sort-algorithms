@@ -1,20 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "func.h"
 
 int main()
 {
-  int len, ate;
+  int len, from, to;
 
   printf("Tamanho da lista: ");
   scanf("%d", &len);
   
   int lista[len];
 
-  printf("Gerar numeros aleatorios de 0 ate: ");
-  scanf("%d", &ate);
+  printf("Gerar numeros aleatorios de: ");
+  scanf("%d", &from);
+  
+  printf("Ate: ");
+  scanf("%d", &to);
 
-  gerarListaAleatoria(lista, len, ate+1);
+  gerarListaAleatoria(lista, len, from, to+1);
 
   printf("Lista Desordenada:\n");
 

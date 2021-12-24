@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "func.h"
  
 int estaOrdenado(int *lista, int n) // Funcao que verifica se a lista esta ordenada
@@ -47,9 +48,10 @@ void imprimeLista(int *lista, int n) // Funcao que imprime a lista, para evitar 
   }
 }
 
-void gerarListaAleatoria(int *lista, int len, int n){
+void gerarListaAleatoria(int *lista, int len, int m, int n){
+  srand( (unsigned)time(NULL) );
   for(int i=0;i<len;i++)
   {
-    lista[i]=(rand()%n);
+    lista[i]=((rand()%(n-m))+m);
   }
 }
