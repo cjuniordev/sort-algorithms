@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "func.h"
 
 int pegaDigito(int numero, int divisor){
@@ -134,5 +135,13 @@ void imprimeLista(int *lista, int n) // Funcao que imprime a lista, para evitar 
         } else{
             printf("%d, ", lista[i]);
         }  
+  }
+}
+
+void gerarListaAleatoria(int *lista, int len, int m, int n){
+  srand( (unsigned)time(NULL) );
+  for(int i=0;i<len;i++)
+  {
+    lista[i]=((rand()%(n-m))+m);
   }
 }

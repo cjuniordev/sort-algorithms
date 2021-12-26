@@ -1,11 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "func.h"
 
 int main()
 {
-  int list[] = { 4, 1, 3, 0, 0, -10, -5, -68, 10 }; //Variavel contendo a lista
-  int len = sizeof(list)/sizeof(list[0]); //Variavel contendo o comprimento da lista
+  int len, from, to;
+
+  printf("Tamanho da lista: ");
+  scanf("%d", &len);
+  
+  int list[len];
+
+  printf("Gerar numeros aleatorios de: ");
+  scanf("%d", &from);
+  
+  printf("Ate: ");
+  scanf("%d", &to);
+
+  gerarListaAleatoria(list, len, from, to+1);
 
   printf("Lista Desordenada:\n");
 

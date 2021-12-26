@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 // cabeçalho das funções -----
 int pegaDigito(int numero, int divisor);
@@ -12,3 +13,4 @@ void retornaListaFinal(int *lista, int *temp, int n);
 void countingSort(int *lista, int n, int divisor, int *aux);
 void radixSort(int *lista, int n);
 void imprimeLista(int *lista, int n);
+void gerarListaAleatoria(int *lista, int len, int m, int n);
