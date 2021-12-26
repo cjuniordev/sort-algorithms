@@ -82,7 +82,7 @@ void radixSort(int *lista, int n){
     for(int i=0; i<n; i++){ // pega todos elementos negativos da lista original, copia para outra lista pega o abs
         if(lista[i]<0){
             negativo[i] = (-1)*lista[i];
-            lista[i] = (-1)*lista[i];
+            lista[i] = 0;
         }
     }
 
