@@ -43,6 +43,23 @@ void zeraLista(int *lista, int n){ // define todos elementos de uma lista como s
     }
 }
 
+void retornaListaFinal(int *lista, int *temp, int n){
+    int j=0;
+    // remove os zeros desnecessarios e retorna à lista original
+    for(int i=0; i<n; i++){
+        if(temp[i] != 0 && temp[i] < 0){
+            lista[j] = temp[i];
+            j++;
+        }
+    }
+    for(int i=0; i<n; i++){
+        if(temp[i] != 0 && temp[i] > 0){
+            lista[j] = temp[i];
+            j++;
+        }
+    }
+}
+
 // NAO ALTERA NADA NESSA FUNCAO, O ERRO NAO TA AQUI
 void countingSort(int *lista, int n, int divisor, int *aux){
     int base = 10;
@@ -73,15 +90,13 @@ void countingSort(int *lista, int n, int divisor, int *aux){
 }
 
 void radixSort(int *lista, int n){
-    int divisor = 1;
-    int q = maximo(lista, n); // pega o maior numero do vetor
-    int *aux = (int *)calloc(n, sizeof(int));
-    int *negativo = (int *)calloc(n, sizeof(int));
-
-    zeraLista(negativo, n);
+    int *aux = (int *)calloc(n, sizeof(int)), *temp = (int *)calloc(n*2, sizeof(int)), *negativos = (int *)calloc(n, sizeof(int));
+    int q = maximo(lista, n), k = maximo(negativos, n), divisor = 1; // pega o maior numero do vetor
+    
+    zeraLista(negativos, n);
     for(int i=0; i<n; i++){ // pega todos elementos negativos da lista original, copia para outra lista pega o abs
         if(lista[i]<0){
-            negativo[i] = (-1)*lista[i];
+            negativos[i] = (-1)*lista[i];
             lista[i] = 0;
         }
     }
@@ -92,37 +107,21 @@ void radixSort(int *lista, int n){
         q /= 10; // diminui a quantidade de casas do maior numero
     }
 
-    // seta variaveis novamente
-    divisor = 1;
-    q = maximo(negativo, n); // pega o maior numero do vetor
-    int *aux2 = (int *)calloc(n, sizeof(int));
-    while(q > 0){ // ordena negativos
-        countingSort(negativo, n, divisor, aux2);
+    divisor = 1; // seta variaveis novamente
+    while(k > 0){ // ordena negativos
+        countingSort(negativos, n, divisor, aux);
         divisor *= 10; // dividor multiplo de 10 para ir pegando sempre a proxima casa decimal
-        q /= 10; // diminui a quantidade de casas do maior numero
+        k /= 10; // diminui a quantidade de casas do maior numero
     }
-    inverteLista(negativo, n); // deixa a lista decrescente
-    negativaLista(negativo, n); // deixa os numeros negativos
 
-    int *aux3 = (int *)calloc(n*2, sizeof(int));
-    juntaVetores(aux3, negativo, lista, n); // junta as duas listas em uma so
-    int j=0;
-    for(int i=0; i<n; i++){ // remove os zeros e retorna à lista original
-        if(aux3[i] != 0 && aux3[i] < 0){
-            lista[j] = aux3[i];
-            j++;
-        }
-    }
-    for(int i=0; i<n; i++){ // remove os zeros e retorna à lista original
-        if(aux3[i] != 0 && aux3[i] > 0){
-            lista[j] = aux3[i];
-            j++;
-        }
-    }
+    inverteLista(negativos, n); // deixa a lista decrescente
+    negativaLista(negativos, n); // deixa os numeros negativos
+    juntaVetores(temp, negativos, lista, n); // junta as duas listas em uma so
+    retornaListaFinal(lista, temp, n);
 
     free(aux); // libera memoria
-    free(aux2); // libera memoria
-    free(aux3); // libera memoria
+    free(temp); // libera memoria
+    free(negativos); // libera memoria
 }
 
 void imprimeLista(int *lista, int n) // Funcao que imprime a lista, para evitar repetição de codigo
