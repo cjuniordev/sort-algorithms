@@ -4,7 +4,7 @@
 
 int main()
 {
-  int list[] = { 4, 1, 3, 7, -8, -10, -5, 68, 10 }; //Variavel contendo a lista
+  int list[] = { 4, 1, 3, 0, 0, -10, -5, 68, 10 }; //Variavel contendo a lista
   int len = sizeof(list)/sizeof(list[0]); //Variavel contendo o comprimento da lista
 
   printf("Lista Desordenada:\n");

@@ -106,9 +106,15 @@ void radixSort(int *lista, int n){
 
     int *aux3 = (int *)calloc(n*2, sizeof(int));
     juntaVetores(aux3, negativo, lista, n); // junta as duas listas em uma so
-
-    for(int i=0, j=0; i<(n*2); i++){ // remove os zeros e retorna à lista original
-        if(aux3[i] != 0){
+    int j=0;
+    for(int i=0; i<n; i++){ // remove os zeros e retorna à lista original
+        if(aux3[i] != 0 && aux3[i] < 0){
+            lista[j] = aux3[i];
+            j++;
+        }
+    }
+    for(int i=0; i<n; i++){ // remove os zeros e retorna à lista original
+        if(aux3[i] != 0 && aux3[i] > 0){
             lista[j] = aux3[i];
             j++;
         }
