@@ -92,7 +92,6 @@ void countingSort(int *lista, int n, int divisor, int *aux){
 
 void radixSort(int *lista, int n){
     int *aux = (int *)calloc(n, sizeof(int)), *temp = (int *)calloc(n*2, sizeof(int)), *negativos = (int *)calloc(n, sizeof(int));
-    int q = maximo(lista, n), k = maximo(negativos, n), divisor = 1; // pega o maior numero do vetor
     
     zeraLista(negativos, n);
     for(int i=0; i<n; i++){ // pega todos elementos negativos da lista original, copia para outra lista pega o abs
@@ -101,6 +100,8 @@ void radixSort(int *lista, int n){
             lista[i] = 0;
         }
     }
+
+    int q = maximo(lista, n), k = maximo(negativos, n), divisor = 1; // pega o maior numero do vetor
 
     while(q > 0){ // ordena lista dos positivos
         countingSort(lista, n, divisor, aux);
