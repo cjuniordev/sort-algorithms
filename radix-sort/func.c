@@ -146,3 +146,11 @@ void gerarListaAleatoria(int *lista, int len, int m, int n){
     lista[i]=((rand()%(n-m))+m);
   }
 }
+
+void gerarListaCrescente(int *lista, int len){
+  for(int i = 0; i < len; i++) lista[i] = i+1;
+}
+
+void gerarListaDecrescente(int *lista, int len){
+  for(int i = 0; i <= len; i++) lista[len-i] = i;
+}

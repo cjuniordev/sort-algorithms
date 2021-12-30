@@ -14,3 +14,5 @@ void countingSort(int *lista, int n, int divisor, int *aux);
 void radixSort(int *lista, int n);
 void imprimeLista(int *lista, int n);
 void gerarListaAleatoria(int *lista, int len, int m, int n);
+void gerarListaCrescente(int *lista, int len);
+void gerarListaDecrescente(int *lista, int len);
