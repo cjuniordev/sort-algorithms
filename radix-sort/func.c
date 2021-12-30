@@ -63,7 +63,7 @@ void retornaListaFinal(int *lista, int *temp, int n){
 
 // NAO ALTERA NADA NESSA FUNCAO, O ERRO NAO TA AQUI
 void countingSort(int *lista, int n, int divisor, int *aux){
-    int base = 10;
+    int base = n;
     int digito, c[base], s = 0; // t --> soma de prefixo || c[base] --> lista de contagem
     zeraLista(c, n);
     zeraLista(aux, n);
