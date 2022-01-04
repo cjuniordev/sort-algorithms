@@ -62,5 +62,7 @@ int main(){
   quickSort(lista, 0, len); // Chamada da função que aplica o metodo bogosort
   printf("exp 3.3 | Tempo de execução: %ldms\n", ((clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
 
+  free(lista);
+
   return 0;
 }
