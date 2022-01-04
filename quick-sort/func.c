@@ -3,34 +3,51 @@
 #include <time.h>
 #include "func.h"
 
-void quickSort(int *list, int init, int end){
-    int index_pivo = (init+end)/2; // Pega index do pivo, que é o index do meio
-    int pivo = list[index_pivo]; // Pega pivo da lista
-    int i = init;
-    int j = end-1;
-    int temp;
+void trocaNumeros(int *x, int *y){
+  int temp = *x;
+  *x = *y;
+  *y = temp;
+}
 
-    while(i <= j){
-      while (list[i] < pivo && i < end){ // Verifica se todos numeros antes do pivo sao menores que ele
-        i++; // Incrementa i
-      } 
-      while(list[j] > pivo && j > init){ // Verifica se todos numeros apos o pivo sao maiores que ele
-		    j--; // Decrementa j
-		  }
-      if(i <= j){ // Se i for menor ou igual a j
-			  temp = list[i]; // Pegando posicão i da lista
-			  list[i] = list[j]; // A posiçao i recebe a posiçao j
-			  list[j] = temp; // A posição j recebe a posiçao i
-			  i++;
-			  j--;
-		  } // Até aqui a lista esta ordenada entre maiores e menores que o pivo
+int particao(int *list, int init, int end){
+  // Pega o número mais a direita da lista como o pivô
+  int pivot = list[(end - init)/2];
+  
+  // Ponteiro para o maior elemento
+  int i = (init - 1);
 
-        // Agora pegamos essa lista subdividida em duas partes nao ordenadas, e refazemos o processo recursivamente
-      if(j > init)
-		    quickSort(list, init, j+1);
-	    if(i < end)
-		    quickSort(list, i, end);
+  // Passa por todos os números da lista comparando-os com o pivô
+  for (int j = init; j < end; j++) {
+    if (list[j] <= pivot) {
+        
+      // se um numero menor q i for encontra aumenta i
+      i++;
+      
+      // e troca os números
+      trocaNumeros(&list[i], &list[j]);
     }
+  }
+
+  // troca o numero pivô com o maior número apontado por i
+  trocaNumeros(&list[i + 1], &list[end]);
+  
+  // retorna o ponteiro da partição
+  return (i + 1);
+}
+
+void quickSort(int *list, int init, int end) {
+  if (init < end) {
+    // find the pivot element such that
+    // elements smaller than pivot are on left of pivot
+    // elements greater than pivot are on right of pivot
+    int pi = particao(list, init, end);
+    
+    // recursive call on the left of pivot
+    quickSort(list, init, pi - 1);
+    
+    // recursive call on the right of pivot
+    quickSort(list, pi + 1, end);
+  }
 }
 
 void imprimeLista(int *lista, int n) // Funcao que imprime a lista, para evitar repetição de codigo
