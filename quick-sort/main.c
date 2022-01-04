@@ -12,7 +12,7 @@ int main(){
   clock_t tInicio;
   tInicio = clock(); // inicia a marcação do tempo 
   quickSort(lista, 0, len); // Chamada da função que aplica o metodo bogosort
-  printf("exp 1 | Tempo de execução: %ldms\n", ((clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
+  printf("exp 1 | Tempo de execução: %.4fms\n", ((double)(clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
   
   // exp 2.1
   len = 1000;
@@ -20,7 +20,7 @@ int main(){
   gerarListaAleatoria(lista, len, -1000, 1000+1);
   tInicio = clock(); // inicia a marcação do tempo 
   quickSort(lista, 0, len); // Chamada da função que aplica o metodo bogosort
-  printf("exp 2.1 | Tempo de execução: %ldms\n", ((clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
+  printf("exp 2.1 | Tempo de execução: %.4fms\n", ((double)(clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
 
   // exp 2.2
   len = 1000;
@@ -28,7 +28,7 @@ int main(){
   gerarListaCrescente(lista, len);
   tInicio = clock(); // inicia a marcação do tempo 
   quickSort(lista, 0, len); // Chamada da função que aplica o metodo bogosort
-  printf("exp 2.2 | Tempo de execução: %ldms\n", ((clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
+  printf("exp 2.2 | Tempo de execução: %.4fms\n", ((double)(clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
 
   // exp 2.3
   len = 1000;
@@ -36,7 +36,7 @@ int main(){
   gerarListaDecrescente(lista, len);
   tInicio = clock(); // inicia a marcação do tempo 
   quickSort(lista, 0, len); // Chamada da função que aplica o metodo bogosort
-  printf("exp 2.3 | Tempo de execução: %ldms\n", ((clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
+  printf("exp 2.3 | Tempo de execução: %.4fms\n", ((double)(clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
 
   // exp 3.1
   len = 10000;
@@ -44,7 +44,7 @@ int main(){
   gerarListaAleatoria(lista, len, -99999, 99999+1);
   tInicio = clock(); // inicia a marcação do tempo 
   quickSort(lista, 0, len); // Chamada da função que aplica o metodo bogosort
-  printf("exp 3.1 | Tempo de execução: %ldms\n", ((clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
+  printf("exp 3.1 | Tempo de execução: %.4fms\n", ((double)(clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
 
   // exp 3.2
   len = 10000;
@@ -52,7 +52,7 @@ int main(){
   gerarListaCrescente(lista, len);
   tInicio = clock(); // inicia a marcação do tempo 
   quickSort(lista, 0, len); // Chamada da função que aplica o metodo bogosort
-  printf("exp 3.2 | Tempo de execução: %ldms\n", ((clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
+  printf("exp 3.2 | Tempo de execução: %.4fms\n", ((double)(clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
 
   // exp 3.3
   len = 10000;
@@ -60,7 +60,7 @@ int main(){
   gerarListaDecrescente(lista, len);
   tInicio = clock(); // inicia a marcação do tempo 
   quickSort(lista, 0, len); // Chamada da função que aplica o metodo bogosort
-  printf("exp 3.3 | Tempo de execução: %ldms\n", ((clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
+  printf("exp 3.3 | Tempo de execução: %.4fms\n", ((double)(clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
 
   free(lista);
 
