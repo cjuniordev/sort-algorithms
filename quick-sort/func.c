@@ -11,28 +11,26 @@ void trocaNumeros(int *x, int *y){
 
 int particao(int *list, int init, int end){
   // Pega o número mais a direita da lista como o pivô
-  int pivot = list[(end - init)/2];
+  int pivo = list[end];
   
   // Ponteiro para o maior elemento
-  int i = (init - 1);
+  int i = init - 1;
 
   // Passa por todos os números da lista comparando-os com o pivô
-  for (int j = init; j < end; j++) {
-    if (list[j] <= pivot) {
-        
+  for (int j = init; j <= end; j++) {
+    if (list[j] < pivo) {
       // se um numero menor q i for encontra aumenta i
       i++;
-      
       // e troca os números
-      trocaNumeros(&list[i], &list[j]);
+      trocaNumeros(&list[i], &list[j]);  
     }
   }
 
   // troca o numero pivô com o maior número apontado por i
   trocaNumeros(&list[i + 1], &list[end]);
-  
+   
   // retorna o ponteiro da partição
-  return (i + 1);
+  return i+1;
 }
 
 void quickSort(int *list, int init, int end) {
@@ -40,13 +38,13 @@ void quickSort(int *list, int init, int end) {
     // find the pivot element such that
     // elements smaller than pivot are on left of pivot
     // elements greater than pivot are on right of pivot
-    int pi = particao(list, init, end);
+    int pivo = particao(list, init, end);
     
     // recursive call on the left of pivot
-    quickSort(list, init, pi - 1);
+    quickSort(list, init, pivo - 1);
     
     // recursive call on the right of pivot
-    quickSort(list, pi + 1, end);
+    quickSort(list, pivo + 1, end);
   }
 }
 
