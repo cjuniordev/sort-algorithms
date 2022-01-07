@@ -13,38 +13,35 @@ int particao(int *list, int init, int end){
   // Pega o número mais a direita da lista como o pivô
   int pivo = list[end];
   
-  // Ponteiro para o maior elemento
-  int i = init - 1;
+  // Ponteiro para o maior elemento da lista
+  int x = init - 1;
 
   // Passa por todos os números da lista comparando-os com o pivô
-  for (int j = init; j <= end; j++) {
-    if (list[j] < pivo) {
-      // se um numero menor q i for encontra aumenta i
-      i++;
+  for (int i = init; i <= end; i++) {
+    if (list[i] < pivo) {
+      // se um numero menor que x for encontrado aumenta x
+      x++;
       // e troca os números
-      trocaNumeros(&list[i], &list[j]);  
+      trocaNumeros(&list[x], &list[i]);  
     }
   }
 
-  // troca o numero pivô com o maior número apontado por i
-  trocaNumeros(&list[i + 1], &list[end]);
+  // troca o numero pivô com o maior número apontado por x
+  trocaNumeros(&list[x + 1], &list[end]);
    
   // retorna o ponteiro da partição
-  return i+1;
+  return x+1;
 }
 
 void quickSort(int *list, int init, int end) {
   if (init < end) {
-    // find the pivot element such that
-    // elements smaller than pivot are on left of pivot
-    // elements greater than pivot are on right of pivot
+    // Primeiro encontramos o elemento pivô para que aqueles menores
+    // que o pivô estejam a esquerda dele e maiores a direita dele.
     int pivo = particao(list, init, end);
     
-    // recursive call on the left of pivot
-    quickSort(list, init, pivo - 1);
+    quickSort(list, init, pivo - 1); // Chama novamente a função para os elementos menores que o pivô
     
-    // recursive call on the right of pivot
-    quickSort(list, pivo + 1, end);
+    quickSort(list, pivo + 1, end); // Chama novamente a função para os elementos maiores que o pivô
   }
 }
 
@@ -62,11 +59,12 @@ void imprimeLista(int *lista, int n) // Funcao que imprime a lista, para evitar 
 }
 
 void gerarListaAleatoria(int *lista, int len, int m, int n){
-  srand( (unsigned)time(NULL) );
-  n++;
+  srand( (unsigned)time(NULL) ); // Gera números semi-aleatórios baseado em algumas coisas do computador
+  n++; //aumenta n em 1 devido a como a função rand funciona
   for(int i=0;i<len;i++)
   {
-    lista[i]=((rand()%(n-m))+m);
+    lista[i]=((rand()%(n-m))+m); //gera um número aleatório entre (n-m) e depois soma m nele
+    //isso foi feito para que possamos gerar números negativos ou com o chão sendo > 0
   }
 }
 
