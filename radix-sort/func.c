@@ -140,11 +140,12 @@ void imprimeLista(int *lista, int n) // Funcao que imprime a lista, para evitar 
 }
 
 void gerarListaAleatoria(int *lista, int len, int m, int n){
-  srand( (unsigned)time(NULL) );
-  n++;
+  srand( (unsigned)time(NULL) ); // Gera números semi-aleatórios baseado em algumas coisas do computador
+  n++; //aumenta n em 1 devido a como a função rand funciona
   for(int i=0;i<len;i++)
   {
-    lista[i]=((rand()%(n-m))+m);
+    lista[i]=((rand()%(n-m))+m); //gera um número aleatório entre (n-m) e depois soma m nele
+    //isso foi feito para que possamos gerar números negativos ou com o chão sendo > 0
   }
 }
 
