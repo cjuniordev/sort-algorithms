@@ -14,23 +14,23 @@ int particao(int *list, int init, int end){
   int pivo = list[end];
   
   // Ponteiro para o maior elemento da lista
-  int x = init - 1;
+  int x = init;
 
   // Passa por todos os números da lista comparando-os com o pivô
-  for (int i = init; i <= end; i++) {
-    if (list[i] < pivo) {
-      // se um numero menor que x for encontrado aumenta x
-      x++;
-      // e troca os números
+  for (int i = init; i < end; i++) {
+    if (list[i] <= pivo) {
+      // se um numero menor que x for encontrado, troca os números
       trocaNumeros(&list[x], &list[i]);  
+      // e aumenta x
+      x++;
     }
   }
 
   // troca o numero pivô com o maior número apontado por x
-  trocaNumeros(&list[x + 1], &list[end]);
+  trocaNumeros(&list[x], &list[end]);
    
   // retorna o ponteiro da partição
-  return x+1;
+  return x;
 }
 
 void quickSort(int *list, int init, int end) {
