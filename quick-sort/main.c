@@ -20,7 +20,7 @@ int main(){
   lista = (int *)calloc(len, sizeof(int));
   gerarListaAleatoria(lista, len, -1000, 1000);
   tInicio = clock(); // inicia a marcação do tempo 
-  //quickSort(lista, 0, len); // Chamada da função que aplica o metodo quicksort
+  quickSort(lista, 0, len); // Chamada da função que aplica o metodo quicksort
   printf("exp 2.1 | Tempo de execução: %.4fms\n", ((double)(clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
   free(lista);
 
@@ -28,7 +28,7 @@ int main(){
   lista = (int *)calloc(len, sizeof(int));
   gerarListaCrescente(lista, len);
   tInicio = clock(); // inicia a marcação do tempo 
-  //quickSort(lista, 0, len); // Chamada da função que aplica o metodo quicksort
+  quickSort(lista, 0, len); // Chamada da função que aplica o metodo quicksort
   printf("exp 2.2 | Tempo de execução: %.4fms\n", ((double)(clock() - tInicio) / (CLOCKS_PER_SEC / 1000)));
   free(lista);
 
