@@ -47,7 +47,7 @@ int main()
   free(lista);
 
   // exp 3.1
-  len = 1000;
+  len = 10000;
   lista = (int *)calloc(len, sizeof(int));
   gerarListaAleatoria(lista, len, -99999, 99999);
   tInicio = clock(); // inicia a marcação do tempo 

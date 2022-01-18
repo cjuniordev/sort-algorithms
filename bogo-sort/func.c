@@ -54,9 +54,18 @@ void imprimeLista(int *lista, int n) // Funcao que imprime a lista, para evitar 
 void gerarListaAleatoria(int *lista, int len, int m, int n){
   srand( (unsigned)time(NULL) ); // Gera números semi-aleatórios baseado em algumas coisas do computador
   n++; //aumenta n em 1 devido a como a função rand funciona
-  for(int i=0;i<len;i++)
-  {
-    lista[i]=((rand()%(n-m))+m); //gera um número aleatório entre (n-m) e depois soma m nele
-    //isso foi feito para que possamos gerar números negativos ou com o chão sendo > 0
+  for(int j = (n-m); j > 0; j -= RAND_MAX){
+    for(int i=0;i<len;i++)
+    {
+      lista[i]+=(rand()%j); //gera um número aleatório entre 0 e j, j vezes
+      //devido ao limite que um número aleatório pode ser gerado: RAND_MAX = 32767
+      //listas muito grandes, como as dos experimentos 3.1 + não podem ser geradas
+      //então temos que gerar valores aleatórios diversas vezes para satisfazer isso
+    }
   }
+    for(int i=0;i<len;i++)
+    {
+      lista[i]+=m; //adiciona o número m (valor mínimo) na lista para que seu valor nunca seja menor que ele
+      //isso foi feito para que possamos gerar números negativos ou com o chão sendo > 0
+    }
 }

@@ -5,7 +5,7 @@
 #include "func.h"
 
 int pegaDigito(int numero, int divisor){
-    return (numero / divisor) % 10;
+    return (numero / divisor) % 10; // (123 / 1) % 10 por exemplo
 }
 
 int maximo(int lista[], int n){ // lista e tamanho
@@ -48,32 +48,29 @@ void retornaListaFinal(int *lista, int *temp, int n){
     int j=0;
     // remove os zeros desnecessarios e retorna à lista original
     for(int i=0; i<n; i++){
-        if(temp[i] != 0 && temp[i] < 0){
+        if(temp[i] < 0){
             lista[j] = temp[i];
             j++;
         }
     }
     for(int i=0; i<n; i++){
-        if(temp[i] != 0 && temp[i] > 0){
+        if(temp[i] > 0){
             lista[j] = temp[i];
             j++;
         }
     }
 }
 
-// NAO ALTERA NADA NESSA FUNCAO, O ERRO NAO TA AQUI
 void countingSort(int *lista, int n, int divisor, int *aux){
-    int base = n;
-    int digito, c[base], s = 0; // t --> soma de prefixo || c[base] --> lista de contagem
+    int digito, c[n], s = 0; // t --> soma de prefixo || c[n] --> vetor contador
     zeraLista(c, n);
-    zeraLista(aux, n);
 
     for(int i=0; i < n; i++){
         digito = pegaDigito(lista[i], divisor);
         c[digito]++;
     }
 
-    for(int i=0; i < base; i++){ // soma de prefixo, soma todos os elementos antes de i
+    for(int i=0; i < n; i++){ // soma de prefixo, soma todos os elementos antes de i
         int t = c[i];
         c[i] = s;
         s += t;
@@ -93,7 +90,6 @@ void countingSort(int *lista, int n, int divisor, int *aux){
 void radixSort(int *lista, int n){
     int *aux = (int *)calloc(n, sizeof(int)), *temp = (int *)calloc(n*2, sizeof(int)), *negativos = (int *)calloc(n, sizeof(int));
     
-    zeraLista(negativos, n);
     for(int i=0; i<n; i++){ // pega todos elementos negativos da lista original, copia para outra lista pega o abs
         if(lista[i]<0){
             negativos[i] = (-1)*lista[i];
@@ -142,11 +138,20 @@ void imprimeLista(int *lista, int n) // Funcao que imprime a lista, para evitar 
 void gerarListaAleatoria(int *lista, int len, int m, int n){
   srand( (unsigned)time(NULL) ); // Gera números semi-aleatórios baseado em algumas coisas do computador
   n++; //aumenta n em 1 devido a como a função rand funciona
-  for(int i=0;i<len;i++)
-  {
-    lista[i]=((rand()%(n-m))+m); //gera um número aleatório entre (n-m) e depois soma m nele
-    //isso foi feito para que possamos gerar números negativos ou com o chão sendo > 0
+  for(int j = (n-m); j > 0; j -= RAND_MAX){
+    for(int i=0;i<len;i++)
+    {
+      lista[i]+=(rand()%j); //gera um número aleatório entre 0 e j, j vezes
+      //devido ao limite que um número aleatório pode ser gerado: RAND_MAX = 32767
+      //listas muito grandes, como as dos experimentos 3.1 + não podem ser geradas
+      //então temos que gerar valores aleatórios diversas vezes para satisfazer isso
+    }
   }
+    for(int i=0;i<len;i++)
+    {
+      lista[i]+=m; //adiciona o número m (valor mínimo) na lista para que seu valor nunca seja menor que ele
+      //isso foi feito para que possamos gerar números negativos ou com o chão sendo > 0
+    }
 }
 
 void gerarListaCrescente(int *lista, int len){
