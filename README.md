@@ -28,5 +28,3 @@ $ ./algoritmo.out
 
 #### Implementação feita por: [Carlos Junior](https://github.com/cjuniordev) e [Nicolas Cremasco](https://github.com/n-resende)
 #### Engenharia da Computação - UFES.<br>Matéria de Programação Estruturada lecionada pelo Professor Samuel Abreu.
-
-![UFES](https://www.ufes.br/sites/all/themes/padrao_ufes/images/marca_ufes.png)
