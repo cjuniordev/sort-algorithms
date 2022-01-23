@@ -5,9 +5,7 @@
  
 int estaOrdenado(int *lista, int n) // Funcao que verifica se a lista esta ordenada
 {
-  while ( n >= 2 )  // Enquanto comprimento da lista for maior ou igual a 2
-  {
-    
+  while ( n >= 2 ){ // Enquanto comprimento da lista for maior ou igual a 2
     --n; // Diminuímos o valor dele em um e verificamos
 
     if ( lista[n] < lista[n-1] ) // Se o valor atual da lista for menor que o valor anterior

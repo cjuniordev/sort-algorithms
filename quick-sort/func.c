@@ -13,7 +13,7 @@ int particao(int *list, int init, int end){
   // Pega o número mais a direita da lista como o pivô
   int pivo = list[end];
   
-  // Ponteiro para o maior elemento da lista
+  // Pega a primeira o indice inicial do vetor
   int x = init;
 
   // Passa por todos os números da lista comparando-os com o pivô

@@ -62,7 +62,7 @@ void retornaListaFinal(int *lista, int *temp, int n){
 }
 
 void countingSort(int *lista, int n, int divisor, int *aux){
-    int digito, c[n], s = 0; // t --> soma de prefixo || c[n] --> vetor contador
+    int digito, c[n], s = 0; // c[n] --> vetor contador || s --> soma de prefixo
     zeraLista(c, n);
 
     for(int i=0; i < n; i++){
